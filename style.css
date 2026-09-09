@@ -102,6 +102,67 @@ ul { list-style: none; }
   color: rgba(26, 27, 31, 0.75);
 }
 
+/* ===== Nav Dropdown ===== */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.nav-dropdown-arrow {
+  transition: transform 0.2s;
+}
+
+.nav-dropdown.open .nav-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 110;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-dropdown-link {
+  display: block;
+  color: var(--brown);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.nav-dropdown-link:hover {
+  background-color: var(--cream);
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -666,5 +727,33 @@ ul { list-style: none; }
 
   .legal-brand-link img {
     width: 205px;
+  }
+
+  .nav-dropdown-toggle {
+    padding: 20px 10px;
+    margin: 0 5px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-dropdown-menu {
+    position: static;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: none;
+    padding: 0 0 0 20px;
+    min-width: 0;
+  }
+
+  .nav-dropdown.open .nav-dropdown-menu {
+    display: block;
+  }
+
+  .nav-dropdown-link {
+    color: var(--brown);
+    padding: 10px 12px;
   }
 }

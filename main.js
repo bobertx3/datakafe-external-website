@@ -85,3 +85,33 @@ menuToggle.addEventListener('click', () => {
   navMenu.classList.toggle('open');
 });
 
+/* ===== Nav dropdown (App Dev) ===== */
+document.querySelectorAll('.nav-dropdown').forEach((dropdown) => {
+  const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+  if (!toggle) return;
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = dropdown.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+      dropdown.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+    }
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.nav-dropdown.open').forEach((dropdown) => {
+      dropdown.classList.remove('open');
+      dropdown.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+  }
+});
+
